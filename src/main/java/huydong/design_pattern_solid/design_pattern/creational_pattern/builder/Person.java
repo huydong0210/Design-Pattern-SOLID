@@ -12,15 +12,27 @@ class Person {
     private float height;
     //optional
     private Pet pet;
+    protected static Builder builder(String name){
+        return new Builder(name);
+    }
 
-    static class PersonBuilder {
+    private Person(Builder builder) {
+        this.name = builder.name;
+        this.email = builder.email;
+        this.age = builder.age;
+        this.height = builder.height;
+        this.pet = builder.pet;
+    }
+
+    static class Builder {
         private String name;
         private String email;
         private int age;
         private float height;
         private Pet pet;
 
-        private PersonBuilder(PersonBuilder builder) {
+
+        private Builder(Builder builder) {
             this.name = builder.name;
             this.email = builder.email;
             this.age = builder.age;
@@ -29,29 +41,32 @@ class Person {
 
         }
 
-
-        protected PersonBuilder(String name) {
+        private Builder(String name) {
             this.name = name;
         }
 
-        protected PersonBuilder email(String email) {
+        protected Builder email(String email) {
             this.email = email;
             return this;
         }
 
-        protected PersonBuilder age(int age) {
+        protected Builder age(int age) {
             this.age = age;
             return this;
         }
 
-        protected PersonBuilder height(float height) {
+        protected Builder height(float height) {
             this.height = height;
             return this;
         }
 
-        protected PersonBuilder pet(Pet pet) {
+        protected Builder pet(Pet pet) {
             this.pet = pet;
             return this;
+        }
+
+        protected Person build(){
+            return new Person(this);
         }
 
     }

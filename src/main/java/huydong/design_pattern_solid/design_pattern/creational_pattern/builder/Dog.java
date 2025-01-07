@@ -7,22 +7,30 @@ class Dog implements Pet {
 
     private float weight;
 
-    private Dog(DogBuilder builder) {
+    private Dog(Builder builder) {
         this.name = builder.name;
         this.weight = builder.weight;
+
     }
 
-    static class DogBuilder {
+    static Builder builder(String name) {
+        return new Builder(name);
+    }
+
+    static class Builder {
         private String name;
         private float weight;
 
-        protected DogBuilder(String name) {
+
+        private Builder(String name) {
             this.name = name;
         }
-        protected DogBuilder weight(float weight) {
+
+        protected Builder weight(float weight) {
             this.weight = weight;
             return this;
         }
+
         protected Dog build() {
             return new Dog(this);
         }
