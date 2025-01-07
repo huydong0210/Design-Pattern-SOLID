@@ -1,4 +1,4 @@
-package huydong.desigin_pattern_solid.design_pattern.creational_pattern.builder;
+package huydong.design_pattern_solid.design_pattern.creational_pattern.builder;
 
 class Dog implements Pet {
     //required parameters
